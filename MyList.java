@@ -75,7 +75,7 @@ public class MyList<E> {
         }
     }
 
-    public boolean remove (Object o) {
+   public boolean remove (Object o) {
         Node node = head;
         if (node.element.equals(o)) {
             if (node.next != null) head = node.next;
@@ -83,15 +83,8 @@ public class MyList<E> {
             size--;
             return true;
         }
-        boolean finded = false;
-        while (node.next != null) {
-            if (node.next.element.equals(o)){
-                finded = true;
-                break;
-            }
-            node = node.next;
-        }
-        if (finded) {
+        for (; node.next.element.equals(o); node = node.next) {}
+        if (node.next != null) {
             if (node.next.next != null) node.next = node.next.next;
             else node.next = null;
             size--;
